@@ -116,11 +116,9 @@ export class Main extends React.Component<{}, ContainerState> {
                 case "]":
                     if (curParent == undefined) {
                     } else {
-                        console.log(`end branch curRot: ${curRot}`);
                         curParent = seg.parent;
                         curPos = curParent.end;
                         curRot = curParent.rotation;
-                        console.log(`end branch newRot: ${curRot}`);
                     }
                     break;
                 case "+":
