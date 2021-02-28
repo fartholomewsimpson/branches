@@ -21,8 +21,6 @@ export class Main extends React.Component<{}, ContainerState> {
         'L': 'L[-L][+L]',
         'X': 'L[+XL]',
         'Y': '[+L]',
-        '+': '-',
-        '-': '+',
     };
     // XXX: Remove need for segments in memory, just draw them as you go
     private baseSegment: Segment;
