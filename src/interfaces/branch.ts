@@ -1,9 +1,9 @@
 export interface Segment {
-    age: number,
     start: Coord,
-    end: Coord,
+    end?: Coord,
     rotation: number,
     parent?: Segment,
+    children: Segment[],
 };
 
 export interface Coord {
