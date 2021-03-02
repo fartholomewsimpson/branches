@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface MapProps {
     age: number,
-    editMode: boolean,
+    axiom: string,
     map: [string],
     onEdit: (event: React.ChangeEvent<HTMLInputElement>) => void,
 }
@@ -23,37 +23,29 @@ export class Map extends React.Component<MapProps, MapState> {
 
     render = () => {
         return (
-            <div onClick={this.openMap}>
-                {
-                    this.props.editMode
-                    ? <input onChange={this.props.onEdit} value={this.props.map[0]}/>
-                    : this.mapList()
-                }
+            <div>
+                Axiom: <input onChange={this.props.onEdit} value={this.props.axiom}/>
+                <div onClick={this.openMap}>
+                    <p style={{display: 'inline-block'}}>Age: {this.props.age}</p>
+                    <div>
+                        {!this.state.open
+                        ? (
+                            <p style={{whiteSpace: 'nowrap', overflow: 'hidden'}}>
+                                { `${this.getLatest(this.props.map)}` }
+                            </p>
+                        ) : (
+                            <div>
+                                {this.props.map.map((value, index) => (
+                                    <p key={`${index}:${value}`}>
+                                        { `${index}: ${value}` }
+                                    </p>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
             </div>);
     }
-
-    // TODO: look up how to do
-    mapList = (): any => (
-        <div>
-            <p style={{display: 'inline-block'}}>Age: {this.props.age}</p>
-            <div>
-                {!this.state.open
-                ? (
-                    <p style={{overflow: 'hidden'}}>
-                        { `${this.getLatest(this.props.map)}` }
-                    </p>
-                ) : (
-                    <div>
-                        {this.props.map.map((value, index) => (
-                            <p key={`${index}:${value}`}>
-                                { `${index}: ${value}` }
-                            </p>
-                        ))}
-                    </div>
-                )}
-            </div>
-        </div>
-    );
 
     getLatest = (map: [string]): string => map[map.length - 1];
 
